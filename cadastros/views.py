@@ -117,3 +117,10 @@ class CampoList(ListView):
 class AtividadeList(ListView):
     model = Atividade
     template_name = 'cadastros/listas/atividade.html'
+
+
+
+# autor = Autor.objects.get(name='kessy')
+# livros = Livro.objects.filter(fkautor=autor)
+
+# livro = Livro.objects.filter(fkautor=1).first()
