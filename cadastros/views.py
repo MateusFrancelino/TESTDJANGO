@@ -10,6 +10,17 @@ class CampoCreate(CreateView):
     fields = ['nome', 'descricao']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-campos')
+    
+    def def get_context_data(self, **kwargs):
+        context = super(ViewName, self).get_context_data(**kwargs)
+        context['titulo'] = "Cadastro de Campo"
+        context['botão'] = 'Cadastrar'
+        context['icone'] = '<i class="fa fa-check" aria-hidden="true"></i>'
+
+
+
+        # context ['vendas'] = Venda.objects.filter(usuario=self.request.user)
+        return context
 
 class AtividadeCreate(CreateView):
     model = Atividade

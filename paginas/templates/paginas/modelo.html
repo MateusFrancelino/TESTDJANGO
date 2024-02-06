@@ -83,8 +83,8 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-                                <a class="dropdown-item" href="">Cidades</a>
-                                <a class="dropdown-item" href="">Estados</a>
+                                <a class="dropdown-item" href="{% url 'listar-campos' %}">Campos</a>
+                                <a class="dropdown-item" href="{% url 'listar-atividades' %}">Atividades</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="">Campus</a>
                                 <a class="dropdown-item" href="">Status</a>
@@ -123,30 +123,17 @@
                                 <span id="username">{{ request.user }}</span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="{% url 'login' %}">
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                     Meus dados</a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                     Alterar senha</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="{% url 'logout' %}">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i>
                                     Sair</a>
                             </div>
-                        </li>
-                        {% else %}
-                        <li class="nav-item ">
-                            <a class="nav-link" href="">
-                                <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                Registrar
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="">
-                                <i class="fa fa-sign-in" aria-hidden="true"></i>
-                                Login
-                            </a>
                         </li>
                         {% endif %}
 
