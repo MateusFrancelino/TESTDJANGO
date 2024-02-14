@@ -94,3 +94,98 @@ for compra in compras:
 
 
 compra.pagamento.paymethod
+
+
+
+
+##############################################
+
+
+
+# views.py
+from django.shortcuts import render
+from .models import Resposta, Nome, Questao
+
+def tabela_respostas(request):
+    # Obter todas as respostas
+    respostas = Resposta.objects.all()
+
+    # Inicializar um dicionário para armazenar as respostas no formato desejado
+    respostas_formatadas = {}
+
+    # Obter todas as questões únicas e todos os nomes únicos dos participantes
+    questoes = Questao.objects.all()
+    nomes = Nome.objects.all()
+
+    # Processar as respostas e construir o dicionário
+    for resposta in respostas:
+        nome = resposta.nome.nome
+        questao = resposta.questao.questao
+
+        if nome not in respostas_formatadas:
+            respostas_formatadas[nome] = {}
+
+        respostas_formatadas[nome][questao] = resposta.alternativa
+
+    # Passar os dados formatados para o template
+    context = {
+        'respostas': respostas_formatadas,
+        'nomes': nomes,
+        'questoes': questoes
+    }
+
+    return render(request, 'sua_template.html', context)
+
+
+
+
+
+##########################################################
+
+
+
+
+
+
+# views.py
+from django.shortcuts import render
+from .models import Resposta, Nome, Questao
+
+def tabela_respostas(request):
+    # Obter todas as respostas
+    respostas = Resposta.objects.all()
+
+    # Inicializar um dicionário para armazenar as respostas no formato desejado
+    respostas_formatadas = {}
+
+    # Obter todas as questões únicas e todos os nomes únicos dos participantes
+    questoes = Questao.objects.all()
+    nomes = Nome.objects.all()
+
+    # Processar as respostas e construir o dicionário
+    for nome in nomes:
+        respostas_formatadas[nome.nome] = {}
+        for questao in questoes:
+            resposta = respostas.filter(nome=nome, questao=questao).first()
+            if resposta:
+                respostas_formatadas[nome.nome][questao.questao] = resposta.alternativa
+            else:
+                respostas_formatadas[nome.nome][questao.questao] = ""
+
+    # Passar os dados formatados para o template
+    context = {
+        'respostas': respostas_formatadas,
+        'nomes': nomes,
+        'questoes': questoes
+    }
+
+    return render(request, 'sua_template.html', context)
+
+
+
+
+
+
+
+
+
